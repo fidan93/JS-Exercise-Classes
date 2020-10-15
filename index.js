@@ -147,7 +147,15 @@ demo(subj){
 grade(student,subj){
 return `${student.name} receives a perfect score on ${subj}`
 }
-
+points(student){
+  let act = Math.floor(Math.random()*2);
+  if(act === 0){
+    return student.grade + Math.floor(Math.random()*50)
+  }
+  else{
+    return student.grade - Math.floor(Math.random()*50)
+  }
+}
 }
 
 /*
@@ -171,6 +179,7 @@ constructor(studObj){
   this.previousBackground = studObj.previousBackground;
   this.className = studObj.className;
   this.favSubjects = studObj.favSubjects;
+  this.grade = Math.ceil(Math.random()*100);
 }
 listSubjects(){
   return `Loving ${this.favSubjects}`
@@ -181,7 +190,16 @@ return `${this.name} has submitted a PR for ${subj}`
 sprintChallenge(subj){
   return`${this.name} has begun sprint challenge on ${subj}`
 }
+graduate(arg){
+  if(arg > 70){
+    return `${arg} Graduated`;
+  }
+  else{
+    return `${arg} Grades are not enough for graduation`;
+  }
 }
+}
+
 
 /*
   TASK 6
@@ -208,6 +226,7 @@ standUp(channel){
 debugsCode(studObj,subj){
   return `${this.name} debugs ${studObj.name}'s code on ${subj}`
 }
+
 }
 
 /*
@@ -218,6 +237,11 @@ debugsCode(studObj,subj){
       + This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
       + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
 */
+let student = new Student({name:"Fidan",age:27,location: "Portland", previousBackground:"Flight Attendant",className: "web37",favSubjects: "JS, PhP",grade: null})
+let instructor = new Instructor({name:"Dave",age:35,location:"Utah",specialty:"WEB dev teacher",favLanguage: "Js",catchPhrase:"Hey guys"});
+
+console.log(student.grade);
+console.log(student.graduate(instructor.points(student)));
 
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
